@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import MovieForm from './components/MovieForm';
 import MoviesList from './components/MoviesList';
 import './App.css';
 
@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     fetchMoviesHandler();
   }, [])
-  
+
   useEffect(() => {
     return () => {
       if (retryIntervalId) {
@@ -67,6 +67,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+      <MovieForm />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler} disabled={isLoading}>
           Fetch Movies
