@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
+import classes from './MovieForm.module.css';
 
-const MovieForm = () => {
+const MovieForm = (props) => {
     const titleRef = useRef();
     const openingRef = useRef();
     const dateRef = useRef();
@@ -13,39 +14,33 @@ const MovieForm = () => {
             return;
         }
 
-        const NewMovieObj = {
+        const movie = {
             enteredTitle: enteredTitle,
             enteredOpening: enteredOpening,
             enteredDate: enteredDate
         }
-        console.log(NewMovieObj);
+        props.onAddMovie(movie);;
         titleRef.current.value = '';
         openingRef.current.value = '';
         dateRef.current.value = '';
     }
     return (
         <form onSubmit={submitHandler}>
-            <label htmlFor="title">Title:</label>
-            <input
-                id="title"
-                type="text"
-                ref={titleRef}
-            />
-            <label htmlFor="opening">opening Text:</label>
-            <input
-                id="opening"
-                type="text"
-                ref={openingRef}
-            />
-            <label htmlFor="date">Date:</label>
-            <input
-                id="date"
-                type="text"
-                ref={dateRef }
-            />
-            <button type="submit">Add Movie</button>
+          <div className={classes.control}>
+            <label htmlFor='title'>Title</label>
+            <input type='text' id='title' ref={titleRef} />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='opening-text'>Opening Text</label>
+            <textarea rows='5' id='opening-text' ref={openingRef}></textarea>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='date'>Release Date</label>
+            <input type='text' id='date' ref={dateRef} />
+          </div>
+          <button>Add Movie</button>
         </form>
-    )
+      );
 }
 
 export default MovieForm;
